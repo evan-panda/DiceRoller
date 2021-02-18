@@ -1,7 +1,11 @@
 # DiceRoller
-A very simple, text-based, dice rolling application. 
-
+Welcome to my simple, text-based, dice rolling application. 
+Type "help" in the application for the following information.
 ## Usage
+    To exit, type: 'end', 'exit', 'stop', or 'quit'.
+    This dice roller will roll values for any dice entered as the formula: <num>d<num>
+    It can also handle basic formulas such as; adding multiple dice rolls together, and adding or subtracting modifiers. 
+    (see input exaples below)
 ### Basic Input Examples:
     1d20+4
     1d20 + 6 + 2d4
