@@ -23,6 +23,7 @@ checkDigits = r'^\d+$' # check for only digits
 checkQuit = r'^(end|exit|stop|quit|zxcv)' # starts with quit, exit, or stop
 checkHelp = r'^(help|\-h)' # check for the word 'help'
 checkInvalidChars = r'(?:(?![dD0-9+\-])[\x20-\x7e])+' # check for everything that isn't a number or 'd' or +/-
+checkAdvantageDisadvantage = r'\-[aAdD]$'
 
 ## preset file name
 presetsFileName = 'presets.json'
