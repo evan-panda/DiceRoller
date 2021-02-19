@@ -34,6 +34,9 @@ print('This dice roller will roll values for any dice entered as the formula: <n
 print('It can also handle basic formulas such as; adding multiple dice rolls together, and adding or subtracting modifiers.')
 print("Type 'help' for examples and additional features.")
 helpMessage = """
+    To exit, type: 'end', 'exit', 'stop', or 'quit'
+    This dice roller will roll values for any dice entered as the formula: <num>d<num>
+    It can also handle basic formulas such as; adding multiple dice rolls together, and adding or subtracting modifiers.
     Input Examples:
         1d20+4
         1d20 + 6 + 2d4
