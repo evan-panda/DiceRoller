@@ -2,6 +2,12 @@ from random import randint
 import re
 from os import path
 import json
+from enum import Enum
+
+class RollType(Enum):
+    Dis = 0
+    Normal = 1
+    Adv = 2
 
 ## variables 
 replaceCharsRegex = r'[\s\`\~\!\@\#\$\%\^\&\*\(\)\_\=\[\]\{\}\\\|\;\:\'\"\,\<\>\/\?]'
@@ -23,7 +29,7 @@ checkDigits = r'^\d+$' # check for only digits
 checkQuit = r'^(end|exit|stop|quit|zxcv)' # starts with quit, exit, or stop
 checkHelp = r'^(help|\-h)' # check for the word 'help'
 checkInvalidChars = r'(?:(?![dD0-9+\-])[\x20-\x7e])+' # check for everything that isn't a number or 'd' or +/-
-checkAdvantageDisadvantage = r'\-[aAdD]$'
+checkAdvDis = r'\-[aAdD]$'
 
 ## preset file name
 presetsFileName = 'presets.json'
@@ -216,6 +222,18 @@ def deletePreset(userIn, presetsData):
     if not presetFound:
         print(f'No preset found matching name: "{presetName}"\nPlease try again.') 
 
+## check if user wants to roll with advantage or disadvantage
+def setRollType(userIn):
+    rollType = RollType.Normal
+
+    if re.search(checkAdvDis, userIn):
+        if userIn[-1] == 'a':
+            rollType = RollType.Adv
+        elif userIn[-1] == 'd':
+            rollType = RollType.Dis
+
+    return rollType
+
 ## get presets 
 presetsData = readPresetsFile(presetsFileName)
 
@@ -225,7 +243,12 @@ while True:
     ## user input 
     userIn = input('\nEnter dice roll (#d# +/- <modifiers>): ')
     userIn = userIn.strip(replaceChars).lower()
-
+    
+    ## check roll type
+    rollType = setRollType(userIn)
+    if rollType != RollType.Normal:
+        userIn = userIn[:-2].strip(replaceChars)
+    
     ## quit conditions 
     if re.match(checkQuit, userIn): # see if they app should quit
         break
