@@ -56,7 +56,7 @@ while True:
         print(f'"{userIn}" is not valid. Please try again.')
         continue 
 
-    output = constructOutput(cleanedRolls) 
+    output = constructOutput(cleanedRolls, rollType) 
 
     ## print results
     print(f'Rolling: {"".join(cleanedRolls)}') 

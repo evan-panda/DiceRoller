@@ -83,7 +83,14 @@ def cleanRollInput(rollInput):
     return cleanedRolls
 
 ## construct output and get total roll
-def constructOutput(rollInput):
+def constructOutput(rollInput, rollType):
+    if rollType == RollType.Adv:
+        print('rolling with advantage')
+    elif rollType == RollType.Dis:
+        print('rolling with disadvantage')
+    else:
+        print('normal roll')
+    
     total = 0 # total number rolled +/- others
     output = [] # output string list
     for indx, item in enumerate(rollInput):
